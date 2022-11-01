@@ -1,35 +1,45 @@
 package com.bridgelabz.employeewage;
 
-public class EmployeeWage {
+import java.util.LinkedList;
+
+public class EmployeeWage implements IComputeEmpWage {
+
     public static final int IS_FULL_TIME = 1;
     public static final int IS_PART_TIME = 2;
-    private int numberOfCompanies = 0;
-    private CompanyWage[] companyWageArray;
+    private LinkedList<CompanyWage> companyWageList;
+
     public EmployeeWage() {
-        companyWageArray = new CompanyWage[5];
+        companyWageList = new LinkedList<>();
     }
+
     public static void main(String args[]) {
-        EmployeeWage wageCalculator = new EmployeeWage();
+        IComputeEmpWage wageCalculator = new EmployeeWage();
+
         wageCalculator.addCompany("Google", 50, 15, 200);
         wageCalculator.addCompany("Amazon", 80, 20, 120);
         wageCalculator.addCompany("Netflix", 90, 18, 220);
         wageCalculator.computeEmpWage();
     }
-    private void addCompany(String companyName, int empRatePerHour, int numOfWorkingDays, int maxHoursInMonth) {
-        companyWageArray[numberOfCompanies] = new CompanyWage(companyName, empRatePerHour, numOfWorkingDays, maxHoursInMonth);
-        numberOfCompanies++;
+
+    public void addCompany(String companyName, int empRatePerHour, int numOfWorkingDays, int maxHoursInMonth) {
+        CompanyWage companyWage = new CompanyWage(companyName, empRatePerHour, numOfWorkingDays, maxHoursInMonth);
+        companyWageList.add(companyWage);
     }
-    private void computeEmpWage() {
-        for (int i = 0; i < numberOfCompanies; i++) {
-            companyWageArray[i].setTotalEmpWage(this.computeEmpWage(companyWageArray[i]));
-            System.out.println(companyWageArray[i]);
+
+    public void computeEmpWage() {
+        for (int i = 0; i < companyWageList.size(); i++) {
+            CompanyWage companyWage = companyWageList.get(i);
+            companyWage.setTotalEmpWage(this.computeEmpWage(companyWage));
+            System.out.println(companyWage);
         }
     }
+
     private int computeEmpWage(CompanyWage companyWage) {
         int empHrs = 0;
         int empWage = 0;
         int totalWorkingDays = 0;
         int totalEmpHrs = 0;
+
         for (totalWorkingDays = 1; totalEmpHrs <= companyWage.maxHoursInMonth && totalWorkingDays < companyWage.numOfWorkingDays; totalWorkingDays++) {
             int empCheck = (int) Math.floor(Math.random() * 10) % 3;
 
@@ -55,9 +65,11 @@ public class EmployeeWage {
         return (totalEmpHrs * companyWage.empRatePerHour);
     }
 }
-/*Ability to manage
-Employee Wage of
-multiple companies using
-Interface approach - Note: Refactor to have one
-EmpWageBuilder to implement
-Interface*/
+/*Refactor to have list of
+
+multiple companies to
+manage Employee
+
+Wage.
+- Note: Refactor to use ArrayList
+instead of array*/
