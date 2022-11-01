@@ -1,7 +1,6 @@
 package com.bridgelabz.employeewage;
 
 import java.util.LinkedList;
-
 public class EmployeeWage implements IComputeEmpWage {
 
     public static final int IS_FULL_TIME = 1;
@@ -65,11 +64,6 @@ public class EmployeeWage implements IComputeEmpWage {
         return (totalEmpHrs * companyWage.empRatePerHour);
     }
 }
-/*Refactor to have list of
-
-multiple companies to
-manage Employee
-
-Wage.
-- Note: Refactor to use ArrayList
-instead of array*/
+/*Store the Daily
+Wage along with
+the Total Wage*/
