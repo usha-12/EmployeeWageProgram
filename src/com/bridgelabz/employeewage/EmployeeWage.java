@@ -1,53 +1,56 @@
 package com.bridgelabz.employeewage;
 
 public class EmployeeWage {
-    static final int WAGE_PER_HOUR = 20;
-    static final int TOTAL_WORKING_HOURS = 100;
-    static final int WORKING_DAY_PER_MONTH = 20;
-    static final int FULL_TIME_HOUR = 8;
-    static final int PART_TIME_HOUR = 4;
-    static final int IS_FULL_TIME = 2;
-    static final int IS_PART_TIME = 1;
+    public static final int IS_FULL_TIME = 1;
+    public static final int IS_PART_TIME = 2;
 
-    public static void computeEmployee() {
+    public static void main(String args[]) {
+        computeEmpWage("Google", 50, 15, 200);
+        computeEmpWage("Amazon", 80, 20, 120);
+        computeEmpWage("Meta", 60, 20, 100);
+        computeEmpWage("Netflix", 90, 18, 220);
+        computeEmpWage("Tesla", 100, 20, 250);
+    }
 
-        int day = 1;
-        int totalWorkingHours = 0;
-        int totalWage = 0;
-        while (day <= WORKING_DAY_PER_MONTH && totalWorkingHours <= TOTAL_WORKING_HOURS) {
-            int dailyWage = 0;
+    public static void computeEmpWage(String companyName, int empRatePerHour, int numOfWorkingDays, int maxHoursInMonth) {
+        int empHrs = 0;
+        int empWage = 0;
+        int totalEmpWage = 0;
+        int totalWorkingDays = 0;
+        int totalEmpHrs = 0;
+
+        for (totalWorkingDays = 1; totalEmpHrs <= maxHoursInMonth && totalWorkingDays < numOfWorkingDays; totalWorkingDays++) {
             int empCheck = (int) Math.floor(Math.random() * 10) % 3;
+
             switch (empCheck) {
                 case IS_FULL_TIME:
-                    System.out.println("Employee FULL TIME");
-                    dailyWage = WAGE_PER_HOUR * FULL_TIME_HOUR;
-                    totalWorkingHours = totalWorkingHours + FULL_TIME_HOUR;
+                    empHrs = 8;
+                    System.out.println("Employee is present Full time.");
                     break;
+
                 case IS_PART_TIME:
-                    System.out.println("Employee PART TIME");
-                    dailyWage = WAGE_PER_HOUR * PART_TIME_HOUR;
-                    totalWorkingHours = totalWorkingHours + PART_TIME_HOUR;
+                    empHrs = 4;
+                    System.out.println("Employee is present Part time.");
                     break;
+
                 default:
-                    System.out.println("Employee Absent");
+                    empHrs = 0;
+                    System.out.println("Employee is absent.");
             }
-            totalWage = totalWage + dailyWage;
-            System.out.println("daily Wage => " + day + "=>" + dailyWage);
-            day++;
+            empWage = empHrs * empRatePerHour;
+            totalEmpHrs += empHrs;
+            //totalEmpWage += empWage;
+            System.out.println("Day " + totalWorkingDays + "	Employee hours : " + empHrs + "	Wage $" + empWage);
         }
-        System.out.println("=================================================");
-        System.out.println("Total wage => " + totalWage);
-        System.out.println("Total working hours => " + totalWorkingHours);
-    }
-
-    public static void main(String[] args) {
-        System.out.println("Employee Wage Problem");
-        computeEmployee();
-
+        totalEmpWage = totalEmpHrs * empRatePerHour;
+        System.out.println();
+        System.out.println(companyName + " company Employee Monthly Wage : $" + totalEmpWage + "\n\n");
     }
 }
-/*Refactor the Code
-to write a Class
-Method to Compute
-Employee Wage - Use Class Method and Class
+/*Compute Employee Wage
+for multiple companies - Note: Each Company has its own
+wage, number of working days
+and working hours per month
+- Use Class Method with function
+parameters instead of Class
 Variables*/
