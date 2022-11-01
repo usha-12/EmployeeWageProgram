@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ce45e60b-25be-41e4-9c9b-00792ef88590" name="Changes" comment="" />
+    <list default="true" id="ce45e60b-25be-41e4-9c9b-00792ef88590" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_1_2022_12_45_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_1_2022_12_45_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/bridgelabz/employeewage/EmployeeWage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bridgelabz/employeewage/EmployeeWage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/bridgelabz/employeewage/IComputeEmpWage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bridgelabz/employeewage/IComputeEmpWage.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,6 +18,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
