@@ -1,0 +1,152 @@
+Index: src/com/bridgelabz/employeewage/EmployeeWage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/com/bridgelabz/employeewage/EmployeeWage.java b/src/com/bridgelabz/employeewage/EmployeeWage.java
+--- a/src/com/bridgelabz/employeewage/EmployeeWage.java	
++++ b/src/com/bridgelabz/employeewage/EmployeeWage.java	
+@@ -3,24 +3,30 @@
+ public class EmployeeWage {
+     public static final int IS_FULL_TIME = 1;
+     public static final int IS_PART_TIME = 2;
++
+     private int numberOfCompanies = 0;
+     private CompanyWage[] companyWageArray;
++
+     public EmployeeWage() {
+         companyWageArray = new CompanyWage[5];
+     }
++
+     public static void main(String args[]) {
+-        EmployeeWage wageCalculator = new EmployeeWage();
++        IComputeEmpWage wageCalculator = new EmployeeWage();
++
+         wageCalculator.addCompany("Google", 50, 15, 200);
+         wageCalculator.addCompany("Amazon", 80, 20, 120);
+         wageCalculator.addCompany("Netflix", 90, 18, 220);
+         wageCalculator.computeEmpWage();
+     }
+-    private void addCompany(String companyName, int empRatePerHour, int numOfWorkingDays, int maxHoursInMonth) {
++
++    public void addCompany(String companyName, int empRatePerHour, int numOfWorkingDays, int maxHoursInMonth) {
+         companyWageArray[numberOfCompanies] = new CompanyWage(companyName, empRatePerHour, numOfWorkingDays, maxHoursInMonth);
+         numberOfCompanies++;
+     }
+-    private void computeEmpWage() {
+-        for (int i = 0; i < numberOfCompanies; i++) {
++
++    public void computeEmpWage() {
++        for (int i=0; i<numberOfCompanies; i++) {
+             companyWageArray[i].setTotalEmpWage(this.computeEmpWage(companyWageArray[i]));
+             System.out.println(companyWageArray[i]);
+         }
+@@ -30,37 +36,30 @@
+         int empWage = 0;
+         int totalWorkingDays = 0;
+         int totalEmpHrs = 0;
++
+         for (totalWorkingDays = 1; totalEmpHrs <= companyWage.maxHoursInMonth && totalWorkingDays < companyWage.numOfWorkingDays; totalWorkingDays++) {
+             int empCheck = (int) Math.floor(Math.random() * 10) % 3;
+ 
+             switch (empCheck) {
+-                case IS_FULL_TIME:
++                case IS_FULL_TIME :
+                     empHrs = 8;
+                     System.out.println("Employee is present Full time.");
+                     break;
+ 
+-                case IS_PART_TIME:
++                case IS_PART_TIME :
+                     empHrs = 4;
+                     System.out.println("Employee is present Part time.");
+                     break;
+ 
+-                default:
++                default :
+                     empHrs = 0;
+                     System.out.println("Employee is absent.");
+             }
+             empWage = empHrs * companyWage.empRatePerHour;
+             totalEmpHrs += empHrs;
+             //totalEmpWage += empWage;
+-            System.out.println("Day " + totalWorkingDays + "	Employee hours : " + empHrs + "	Wage $" + empWage);
++            System.out.println("Day " + totalWorkingDays + "	Employee hours : " + empHrs +"	Wage $" + empWage);
+         }
+         return (totalEmpHrs * companyWage.empRatePerHour);
+     }
+-}
+-/*Ability to manage Employee
+-Wage of multiple
+-companies - Note: Refactor to have one
+-EmpWageBuilder to manage for Wage
+-for multiple Company
+-- Create CompanyEmpWage class and let
+-EmpWageBuilder has array of many
+-CompanyEmpWage Object*/
+\ No newline at end of file
++}
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -5,7 +5,6 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="ce45e60b-25be-41e4-9c9b-00792ef88590" name="Changes" comment="">
+-      <change afterPath="$PROJECT_DIR$/src/com/bridgelabz/employeewage/CompanyWage.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/com/bridgelabz/employeewage/EmployeeWage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bridgelabz/employeewage/EmployeeWage.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+Index: src/com/bridgelabz/employeewage/IComputeEmpWage.java
+===================================================================
+diff --git a/src/com/bridgelabz/employeewage/IComputeEmpWage.java b/src/com/bridgelabz/employeewage/IComputeEmpWage.java
+new file mode 100644
+--- /dev/null	
++++ b/src/com/bridgelabz/employeewage/IComputeEmpWage.java	
+@@ -0,0 +1,7 @@
++package com.bridgelabz.employeewage;
++
++public interface IComputeEmpWage {
++
++    public void addCompany(String companyName, int empRatePerHour, int numOfWorkingDays, int maxHoursInMonth);
++    public void computeEmpWage();
++}
+\ No newline at end of file
+Index: src/com/bridgelabz/employeewage/CompanyWage.java
+===================================================================
+diff --git a/src/com/bridgelabz/employeewage/CompanyWage.java b/src/com/bridgelabz/employeewage/CompanyWage.java
+--- a/src/com/bridgelabz/employeewage/CompanyWage.java	
++++ b/src/com/bridgelabz/employeewage/CompanyWage.java	
+@@ -1,26 +1,4 @@
+ package com.bridgelabz.employeewage;
+ 
+ public class CompanyWage {
+-    public final String companyName;
+-    public final int empRatePerHour;
+-    public final int numOfWorkingDays;
+-    public final int maxHoursInMonth;
+-    public int totalEmpWage;
+-
+-    public CompanyWage(String companyName, int empRatePerHour, int numOfWorkingDays, int maxHoursInMonth) {
+-        this.companyName = companyName;
+-        this.empRatePerHour = empRatePerHour;
+-        this.numOfWorkingDays = numOfWorkingDays;
+-        this.maxHoursInMonth = maxHoursInMonth;
+-    }
+-
+-
+-    public void setTotalEmpWage(int totalEmpWage) {
+-        this.totalEmpWage = totalEmpWage;
+-    }
+-
+-    @Override
+-    public String toString() {
+-        return "\n"+companyName+" company Employee Monthly Wage : $" + totalEmpWage+"\n\n";
+-    }
+ }

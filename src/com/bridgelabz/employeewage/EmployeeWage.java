@@ -50,17 +50,14 @@ public class EmployeeWage {
             }
             empWage = empHrs * companyWage.empRatePerHour;
             totalEmpHrs += empHrs;
-            //totalEmpWage += empWage;
             System.out.println("Day " + totalWorkingDays + "	Employee hours : " + empHrs + "	Wage $" + empWage);
         }
         return (totalEmpHrs * companyWage.empRatePerHour);
     }
 }
-/*Ability to manage Employee
-Wage of multiple
-companies - Note: Refactor to have one
-EmpWageBuilder to manage for Wage
-for multiple Company
-- Create CompanyEmpWage class and let
-EmpWageBuilder has array of many
-CompanyEmpWage Object*/
+/*Ability to manage
+Employee Wage of
+multiple companies using
+Interface approach - Note: Refactor to have one
+EmpWageBuilder to implement
+Interface*/
