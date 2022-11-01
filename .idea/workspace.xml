@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ce45e60b-25be-41e4-9c9b-00792ef88590" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/bridgelabz/employeewage/CompanyWage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bridgelabz/employeewage/EmployeeWage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bridgelabz/employeewage/EmployeeWage.java" afterDir="false" />
-    </list>
+    <list default="true" id="ce45e60b-25be-41e4-9c9b-00792ef88590" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,6 +18,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="uc9_saveTotalWageEachCompnay" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
